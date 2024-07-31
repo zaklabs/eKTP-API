@@ -1,0 +1,16 @@
+version: '3'
+services:
+  yolov8_fastapi:
+    container_name: ultralytics_8.2.16
+    image: yolov8/ultralytics:8.2.16
+    restart: "always"
+    volumes:
+      - ./app:/yolov8/app
+      - ./main.py:/yolov8/main.py
+      - ./model:/yolov8/model
+      - ./log.log:/yolov8/log.log
+    working_dir: /yolov8
+    ports:
+      - "8004:8004"
+    command: python main.py
+    # command: /bin/bash
